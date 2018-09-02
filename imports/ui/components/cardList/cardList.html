@@ -1,11 +1,24 @@
 <template name="cardList">
 
-    <h2>All Cards</h2>
-    {{#each card in cards}}
-        <h5>
-            question: {{card.question}}
-        </h5>
-        answer: {{card.answer}}
-        <hr>
-    {{/each}}
+    <div class="row">
+
+        {{#each card in cards}}
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content">
+                        <p>{{card.title}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">{{length card.questions}} questions</a>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+        
+    </div>
+
+    <a href="/create" class="fixed-action-btn btn-floating btn-large waves-effect waves-light red">
+        <i class="material-icons">add</i>
+    </a>
+
 </template>

@@ -1,3 +1,8 @@
 import { Mongo } from 'meteor/mongo';
+import { Schemas } from '../schemas.js';
 
-export const Cards = new Mongo.Collection('cards');
+const cards = new Mongo.Collection('cards');
+
+cards.attachSchema(Schemas.Card);
+
+export const Cards = cards;

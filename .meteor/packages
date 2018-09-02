@@ -25,3 +25,6 @@ meteortesting:mocha               # A package for writing and running your meteo
 johanbrook:publication-collector  # Test a Meteor publication by collecting its output
 msavin:mongol
 maxencecornet:audio-recorder
+aldeed:collection2@3.0.0
+random
+reactive-dict

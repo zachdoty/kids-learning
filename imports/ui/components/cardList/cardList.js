@@ -10,4 +10,7 @@ Template.cardList.helpers({
     cards() {
         return Cards.find({});
     },
+    length(_arr) {
+        return _arr.length;
+    },
 });
