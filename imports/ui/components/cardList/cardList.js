@@ -1,13 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { Cards } from '/imports/api/cards/cards.js';
-import './cards.html';
+import './cardList.html';
 
-Template.card.onCreated(function () {
+Template.cardList.onCreated(function () {
     Meteor.subscribe('cards.all');
 });
 
-Template.card.helpers({
-    card() {
-        return Cards.findOne();
+Template.cardList.helpers({
+    cards() {
+        return Cards.find({});
     },
 });

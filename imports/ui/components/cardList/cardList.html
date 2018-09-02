@@ -1,0 +1,11 @@
+<template name="cardList">
+
+    <h2>All Cards</h2>
+    {{#each card in cards}}
+        <h5>
+            question: {{card.question}}
+        </h5>
+        answer: {{card.answer}}
+        <hr>
+    {{/each}}
+</template>
