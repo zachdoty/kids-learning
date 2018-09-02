@@ -1,0 +1,15 @@
+<template name="card">
+
+    <h2>Single card</h2>
+
+question, multiple answers, insert record of answer
+
+    <h2>All Cards</h2>
+    {{#each card in cards}}
+        <h5>
+        {{card.question}}
+        </h5> record audio<br>
+        {{card.answer}}
+        <hr>
+    {{/each}}
+</template>
