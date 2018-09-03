@@ -1,7 +1,6 @@
 import SimpleSchema from 'simpl-schema';
 const schemas = {};
 
-
 schemas.Option = new SimpleSchema({
     "_id": {
         type: String,
@@ -12,6 +11,13 @@ schemas.Option = new SimpleSchema({
     text: {
         type: String,
         label: "Text",
+    },
+    audio: {
+        type: Object,
+        label: "Text Audio",
+        defaultValue: {data: null},
+        optional: true,
+        blackbox: true
     },
     isCorrect: {
         type: Boolean,
@@ -43,6 +49,13 @@ schemas.Question = new SimpleSchema({
         type: String,
         label: "Text",
     },
+    audio: {
+        type: Object,
+        label: "Text Audio",
+        defaultValue: {data: null},
+        optional: true,
+        blackbox: true
+    },
     options: {
         type: Array,
         label: "Options",
@@ -57,6 +70,13 @@ schemas.Card = new SimpleSchema({
     title: {
         type: String,
         label: "Title",
+    },
+    audio: {
+        type: Object,
+        label: "Title Audio",
+        defaultValue: {data: null},
+        optional: true,
+        blackbox: true
     },
     createdAt: {
         type: Date,

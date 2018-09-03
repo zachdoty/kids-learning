@@ -9,7 +9,7 @@
                         <label for="title">Title</label>
                     </div>
                     <div class="col s1 m2">
-                        <i class="btn-record material-icons">mic</i>
+                        {{ > App_recorder name="title" }}
                     </div>
                 </div>
             </div>
@@ -23,10 +23,13 @@
             {{#each question in questions}}
             <div class="col s12 m12" style="padding-left: 35px;">
                 <div class="row">
-                    <div class="input-field col s12 m12">
+                    <div class="input-field col s11 m10">
                         <input class="question-text validate" data-index="{{@index}}" id="question-text-{{@index}}"
                             type="text">
                         <label for="question-text-{{@index}}">Text</label>
+                    </div>
+                    <div class="col s1 m2">
+                        {{ > App_recorder name="question" qIndex=@index }}
                     </div>
                 </div>
 
@@ -41,11 +44,14 @@
                     {{#each option in question.options}}
                     <div class="col s12" style="margin-left: 35px;">
                         <div class="row">
-                            <div class="input-field col s12 m12">
+                            <div class="input-field col s11 m10">
                                 <input class="option-text validate" data-qindex="{{qIndex}}" data-index="{{@index}}" id="option-text-{{qIndex}}-{{@index}}"
                                     type="text">
                                 <label for="option-text-{{qIndex}}-{{@index}}">Text</label>
                             </div>
+                            <div class="col s1 m2">
+                                {{ > App_recorder name="option" qIndex=qIndex index=@index }}
+                             </div>
 
                             <div class="input-field col s12 m12">
                                 <label>

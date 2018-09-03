@@ -1,0 +1,22 @@
+<template name="App_recorder">
+    <div class="recorder">
+        {{ #if isRecording }}
+        <i id="btn-stop" class=" material-icons cursor-pointer">mic_off</i>
+        {{ else }}
+        <i id="btn-start" class=" material-icons cursor-pointer">mic</i>
+        {{ /if }}
+
+        {{ #if url }}
+        {{ #if isPlaying }}
+        <i id="btn-stop-play" class=" material-icons cursor-pointer">stop</i>
+        {{ else }}
+        <i id="btn-play" class=" material-icons cursor-pointer">play_circle_filled</i>
+        {{ /if }}
+
+        <audio hidden="true" id="{{name}}" >
+                <source src="{{url}}" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+        {{ /if }}
+    </div>
+</template>

@@ -10,6 +10,8 @@ import '../../ui/pages/card/card.js';
 import '../../ui/pages/not-found/not-found.js';
 
 import '../../ui/components/navbar/navbar.js';
+import '../../ui/components/recorder/recorder.js';
+import '../../ui/components/player/player.js';
 import '../../ui/components/add-card/add-card.js';
 import '../../ui/components/cardList/cardList.js';
 

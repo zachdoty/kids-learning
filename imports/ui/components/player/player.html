@@ -1,0 +1,15 @@
+<template name="App_player">
+    <div class="player">
+        {{ #if url }}
+            {{ #if isPlaying }}
+            <i id="btn-stop" class=" material-icons cursor-pointer">mic_off</i>
+            {{ else }}
+            <i id="btn-play" class=" material-icons cursor-pointer">mic</i>
+            {{ /if }}
+            <audio hidden="true" id="{{name}}">
+                <source src="{{url}}" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        {{ /if }}
+    </div>
+</template>
