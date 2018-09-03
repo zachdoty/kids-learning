@@ -1,69 +1,76 @@
 <template name="App_create">
     <br>
-    <div class="row">
-        <div class="col s12">
-            <div class="row">
-                <div class="input-field col s12 m12">
-                    <input id="title" type="text" class="validate">
-                    <label for="title">Title</label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col s12 m12">
-            <h5>Questions</h5>
-        </div>
-
-        {{#each question in questions}}
-        <div class="col s12 m12" style="padding-left: 35px;">
-            <div class="row">
-                <div class="input-field col s12 m12">
-                    <input id="question-text-{{@index}}" type="text" class="validate">
-                    <label for="question-text-{{@index}}">Text</label>
-                </div>
-            </div>
-
-            {{#let qIndex=@index}}
-            <div class="row">
-                <div class="col s12 m12">
-                    <h5>Options <button data-index="{{qIndex}}" type="button" class="right add-option waves-effect waves-light btn">
-                            New
-                        </button></h5>
-                </div>
-
-                {{#each option in question.options}}
-                <div class="col s12" style="margin-left: 35px;">
-                    <div class="row">
-                        <div class="input-field col s12 m12">
-                            <input id="option-text-{{qIndex}}-{{@index}}" type="text" class="validate">
-                            <label for="option-text-{{qIndex}}-{{@index}}">Text</label>
-                        </div>
-
-                        <div class="input-field col s12 m12">
-                            <label>
-                                <input name="options-{{qIndex}}" type="radio" />
-                                <span>Is Correct Answer</span>
-                            </label>
-                        </div>
+    <form id="card-form">
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s11 m10">
+                        <input id="title" type="text" class="validate">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="col s1 m2">
+                        <i class="btn-record material-icons">mic</i>
                     </div>
                 </div>
-                {{/each}}
-
             </div>
-            {{/let}}
-        </div>
-        {{/each}}
-
-
-        <div class="col s12 m12">
-            <button id="add-question" type="button" class="right waves-effect waves-light btn">
-                New Question
-            </button>
         </div>
 
-    </div>
+        <div class="row">
+            <div class="col s12 m12">
+                <h5>Questions</h5>
+            </div>
+
+            {{#each question in questions}}
+            <div class="col s12 m12" style="padding-left: 35px;">
+                <div class="row">
+                    <div class="input-field col s12 m12">
+                        <input class="question-text validate" data-index="{{@index}}" id="question-text-{{@index}}"
+                            type="text">
+                        <label for="question-text-{{@index}}">Text</label>
+                    </div>
+                </div>
+
+                {{#let qIndex=@index}}
+                <div class="row">
+                    <div class="col s12 m12">
+                        <h5>Options <button data-index="{{qIndex}}" type="button" class="right add-option waves-effect waves-light btn">
+                                New
+                            </button></h5>
+                    </div>
+
+                    {{#each option in question.options}}
+                    <div class="col s12" style="margin-left: 35px;">
+                        <div class="row">
+                            <div class="input-field col s12 m12">
+                                <input class="option-text validate" data-qindex="{{qIndex}}" data-index="{{@index}}" id="option-text-{{qIndex}}-{{@index}}"
+                                    type="text">
+                                <label for="option-text-{{qIndex}}-{{@index}}">Text</label>
+                            </div>
+
+                            <div class="input-field col s12 m12">
+                                <label>
+                                    <input class="option-status" value="{{@index}}" name="options-{{qIndex}}" type="radio" />
+                                    <span>Is Correct Answer</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+
+                </div>
+                {{/let}}
+            </div>
+            {{/each}}
+
+
+            <div class="col s12 m12">
+                <button id="add-question" type="button" class="right waves-effect waves-light btn">
+                    New Question
+                </button>
+            </div>
+
+        </div>
+    </form>
 
 
     <button type="button" id="btn-save" class="fixed-action-btn btn-floating btn-large waves-effect waves-light red">

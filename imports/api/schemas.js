@@ -36,6 +36,8 @@ schemas.Question = new SimpleSchema({
     type: {
         type: String,
         label: "Type",
+        defaultValue: 'choices',
+        optional: true,
     },
     text: {
         type: String,
@@ -81,7 +83,7 @@ schemas.Card = new SimpleSchema({
     isLive: {
         type: Boolean,
         label: "Live",
-        defaultValue: false,
+        defaultValue: true,
         optional: true
     },
 });

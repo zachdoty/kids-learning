@@ -11,7 +11,6 @@ Meteor.startup(() => {
         title: 'Do the Tutorial',
         questions: [
             {
-                type: 'options',
                 text: 'Question A',
                 options: [
                     {
@@ -27,7 +26,6 @@ Meteor.startup(() => {
                 ]
             },
             {
-                type: 'options',
                 text: 'Question B',
                 options: [
                     {
@@ -41,6 +39,85 @@ Meteor.startup(() => {
                         text: 'option 3'
                     },
                 ]
+            },
+            {
+                text: 'Question C',
+                options: [
+                    {
+                        text: 'option 1',
+                        isCorrect: true
+                    },
+                    {
+                        text: 'option 2'
+                    },
+                    {
+                        text: 'option 3'
+                    },
+                ]
+            },
+            {
+                text: 'Question D',
+                options: [
+                    {
+                        text: 'option 1',
+                        isCorrect: false
+                    },
+                    {
+                        text: 'option 2'
+                    },
+                    {
+                        text: 'option 3',
+                        isCorrect: true
+                    },
+                ]
+            },
+            {
+                text: 'Question E',
+                options: [
+                    {
+                        text: 'option 1',
+                        isCorrect: false
+                    },
+                    {
+                        text: 'option 2'
+                    },
+                    {
+                        text: 'option 3',
+                        isCorrect: true
+                    },
+                ]
+            },
+            {
+                text: 'Question F',
+                options: [
+                    {
+                        text: 'option 1',
+                        isCorrect: false
+                    },
+                    {
+                        text: 'option 2',
+                        isCorrect: true
+                    },
+                    {
+                        text: 'option 3'
+                    },
+                ]
+            },
+            {
+                text: 'Question G',
+                options: [
+                    {
+                        text: 'option 1',
+                        isCorrect: false
+                    },
+                    {
+                        text: 'option 2',
+                        isCorrect: true
+                    },
+                    {
+                        text: 'option 3'
+                    },
+                ]
             }
         ]
       },
@@ -48,7 +125,6 @@ Meteor.startup(() => {
         title: 'Follow the Guide',
         questions: [
             {
-                type: 'options',
                 text: 'Question A',
                 options: [
                     {
@@ -69,7 +145,6 @@ Meteor.startup(() => {
         title: 'Read the Docs',
         questions: [
             {
-                type: 'options',
                 text: 'Question A',
                 options: [
                     {
@@ -90,7 +165,6 @@ Meteor.startup(() => {
         title: 'Discussions',
         questions: [
             {
-                type: 'options',
                 text: 'Question A',
                 options: [
                     {
