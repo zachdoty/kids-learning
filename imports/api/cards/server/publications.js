@@ -23,3 +23,11 @@ Meteor.publish('cards.info', function (_id) {
         return [];
     }
 });
+
+Meteor.publish('cards.info-admin', function (_id) {
+    if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+        return Cards.find({'_id': _id});
+    } else {
+        return [];
+    }
+});

@@ -38,7 +38,7 @@ FlowRouter.route('/card/:cardId/:qId?', {
   },
 });
 
-FlowRouter.route('/card/:cardId/edit', {
+FlowRouter.route('/card-update/:cardId', {
   name: 'App.edit',
   action() {
     BlazeLayout.render('App_body', { main: 'App_edit_card' });

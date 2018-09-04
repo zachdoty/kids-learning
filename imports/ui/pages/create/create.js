@@ -60,7 +60,6 @@ Template.App_create.events({
                     text: "",
                     options: []
                 }]);
-                localStorage.clear();
             } else {
                 showAlertError('Error while saving card, please check details and try again.');
             }

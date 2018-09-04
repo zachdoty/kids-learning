@@ -13,8 +13,7 @@ let play = (_template, _player) => {
 Template.App_player.onCreated(function () {
     this.url = new ReactiveVar(null);
     this.isPlaying = new ReactiveVar(false);
-
-    if (this.data.audio.data) {
+    if (typeof this.data.audio != 'undefined' && this.data.audio.data) {
         let z = (this.data.audio.data.split(",")).map(x => Number(x));
         let b = new Blob([new Uint8Array(z)], {
             type: "audio/wav"
