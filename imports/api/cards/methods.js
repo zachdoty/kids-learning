@@ -4,7 +4,7 @@ import { Cards } from './cards.js';
 
 Meteor.methods({
     'cards.insert'(_data) {
-        if(this.userId()) {
+        if(Meteor.userId()) {
             // check(question, String);
             // check(answer, String);
             return Cards.insert(_data);
@@ -13,7 +13,7 @@ Meteor.methods({
         }
     },
     'cards.check_answer'(_cardId, _questionId, _answerId) {
-        if(this.userId()) {
+        if(Meteor.userId()) {
             let correct = false;
             let data = Cards.findOne({'_id': _cardId});
             if(data) {

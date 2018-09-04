@@ -50,6 +50,7 @@ Template.App_card.events({
                 if(!_err) {
                     if(_res) {
                         showAlertSuccess('Correct!');
+                        template.isLoading.set(true);
                         let qIndex = template.qIndex.get() + 1;
                         if(qIndex < card.questions.length) {
                             template.qIndex.set(qIndex);
