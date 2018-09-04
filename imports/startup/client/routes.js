@@ -31,19 +31,26 @@ FlowRouter.route('/create', {
   },
 });
 
-FlowRouter.route('/card/:cardId', {
+// FlowRouter.route('/card/:cardId', {
+//   name: 'App.card',
+//   action() {
+//     BlazeLayout.render('App_body', { main: 'App_card' });
+//   },
+// });
+
+FlowRouter.route('/card/:cardId/:qId?', {
   name: 'App.card',
   action() {
     BlazeLayout.render('App_body', { main: 'App_card' });
   },
 });
 
-FlowRouter.route('/parent', {
-  name: 'parent',
-  action() {
-    BlazeLayout.render('App_body', { main: 'parent' });
-  },
-});
+// FlowRouter.route('/parent', {
+//   name: 'parent',
+//   action() {
+//     BlazeLayout.render('App_body', { main: 'parent' });
+//   },
+// });
 
 FlowRouter.notFound = {
   action() {
