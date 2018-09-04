@@ -14,25 +14,23 @@ Template.App_card.onCreated(function () {
     this.autorun(() => {
         FlowRouter.watchPathChange();
         this.getCardId = () => FlowRouter.getParam("cardId");
-        this.questionId = new ReactiveVar(FlowRouter.getParam("qId"));
+        this.questionId = FlowRouter.getParam("qId");
         this.cardId = new ReactiveVar(FlowRouter.getParam("cardId"));
         this.nexQuestionId = new ReactiveVar(null);
     
         this.subscribe('cards.info', this.getCardId());
         if (this.subscriptionsReady()) {
             let card = Cards.findOne({});
-            console.log(this.questionId.get())
-            if (this.questionId.get()) {
+            if (this.questionId) {
                 this.question.set(card.questions.find(_q => {
-                    return _q._id == this.questionId.get();
+                    return _q._id == this.questionId;
                 }));
-                let currentQuestionIndex = card.questions.find(_q => {
-                    return _q._id == this.questionId.get();
+                let currentQuestionIndex = card.questions.findIndex(_q => {
+                    return _q._id == this.questionId;
                 });
+                this.qIndex.set(currentQuestionIndex);
                 if ((currentQuestionIndex + 1) <= (card.questions.length - 1))
                     this.nexQuestionId.set(card.questions[currentQuestionIndex + 1]._id);
-
-                console.log(this.question.get()._id, this.nexQuestionId.get());
             } else {
                 this.question.set(card.questions[0]);
                 if (1 <= (card.questions.length - 1))
@@ -67,10 +65,7 @@ Template.App_card.events({
         if (!template.isChecking.get()) {
             template.isChecking.set(true);
             let answer = $(`input[type='radio'][name='options']:checked`).val();
-            let qId = $(event.target).data('qid');
-            let card = Cards.findOne({});
-            let question = card.questions[Template.instance().qIndex.get()];
-            Meteor.call('cards.check_answer', template.cardId.get(), question._id, answer, (_err, _res) => {
+            Meteor.call('cards.check_answer', template.cardId.get(), template.question.get()._id, answer, (_err, _res) => {
                 if (!_err) {
                     if (_res) {
                         showAlertSuccess('Correct!');
