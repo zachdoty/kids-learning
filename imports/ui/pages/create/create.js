@@ -9,7 +9,6 @@ Template.App_create.onCreated(function () {
         text: "",
         options: []
     }]);
-    localStorage.clear();
 });
 
 Template.App_create.helpers({

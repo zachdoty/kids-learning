@@ -108,4 +108,37 @@ schemas.Card = new SimpleSchema({
     },
 });
 
+schemas.Answers = new SimpleSchema({
+    sessionId: {
+        type: String,
+        label: "Card Id",
+    },
+    cardId: {
+        type: String,
+        label: "Card Id",
+    },
+    questionId: {
+        type: String,
+        label: "Question Id",
+    },
+    answerId: {
+        type: String,
+        label: "Answer Id",
+    },
+    createdAt: {
+        type: Date,
+        autoValue: function () {
+            if (this.isInsert) {
+                return new Date();
+            } else if (this.isUpsert) {
+                return {
+                    $setOnInsert: new Date()
+                };
+            } else {
+                this.unset();
+            }
+        }
+    },
+});
+
 export const Schemas = schemas;

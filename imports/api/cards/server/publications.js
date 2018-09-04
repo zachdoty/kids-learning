@@ -3,6 +3,7 @@ import { Cards } from '../cards.js';
 
 Meteor.publish('cards.all', function () {
     if (Meteor.userId()) {
+        // Roles.addUsersToRoles(Meteor.userId(), ['admin']);
         return Cards.find({isLive: true}, { fields: {
             'isLive': 0,
             'questions.options.isCorrect': 0
