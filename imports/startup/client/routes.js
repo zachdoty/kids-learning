@@ -9,6 +9,7 @@ import '../../ui/pages/create/create.js';
 import '../../ui/pages/card/card.js';
 import '../../ui/pages/not-found/not-found.js';
 
+import '../../ui/components/loader/loader.js';
 import '../../ui/components/navbar/navbar.js';
 import '../../ui/components/recorder/recorder.js';
 import '../../ui/components/player/player.js';

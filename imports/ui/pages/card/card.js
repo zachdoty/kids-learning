@@ -7,12 +7,14 @@ Template.App_card.onCreated(function () {
     this.cardId = new ReactiveVar(FlowRouter.getParam("cardId"));
     this.qIndex = new ReactiveVar(0);
     this.isChecking = new ReactiveVar(false);
+    this.isLoading = new ReactiveVar(true);
     this.question = new ReactiveVar(null);
     this.autorun(() => {
         this.subscribe('cards.info', this.getCardId());
         if(this.subscriptionsReady()) {
             let card = Cards.findOne({});
             this.question.set(card.questions[this.qIndex.get()]);
+            this.isLoading.set(false);
         }
     });
 });
@@ -29,6 +31,9 @@ Template.App_card.helpers({
     },
     qIndex() {
         return Template.instance().qIndex.get() + 1;
+    },
+    isLoading() {
+        return Template.instance().isLoading.get();
     }
 });
 
