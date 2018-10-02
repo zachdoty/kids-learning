@@ -33,3 +33,4 @@ session
 accounts-ui
 accounts-password
 alanning:roles
+materialize:materialize@=0.97.0

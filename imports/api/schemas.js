@@ -109,13 +109,19 @@ schemas.Card = new SimpleSchema({
 });
 
 schemas.Answers = new SimpleSchema({
-    sessionId: {
+    "_id": {
         type: String,
-        label: "Card Id",
+        autoValue: () => {
+            return Random.id()
+        }
     },
     cardId: {
         type: String,
         label: "Card Id",
+    },
+    userId: {
+        type: String,
+        label: "User Id",
     },
     questionId: {
         type: String,
@@ -124,6 +130,12 @@ schemas.Answers = new SimpleSchema({
     answerId: {
         type: String,
         label: "Answer Id",
+    },
+    answerObj: {
+        type: Object,
+        label: "Answer Obj",
+        optional: true,
+        blackbox: true
     },
     createdAt: {
         type: Date,

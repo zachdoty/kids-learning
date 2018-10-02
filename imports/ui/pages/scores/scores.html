@@ -1,0 +1,12 @@
+<template name="App_scores">
+    {{ #if card }}
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h4>{{card.title}}</h4>
+        </li>
+        {{ #each question in card.questions }}
+        <li class="collection-item">{{ question.text }} <span class="right">{{score question._id}}</span></li>
+        {{ /each }}
+    </ul>
+    {{ /if }}
+</template>

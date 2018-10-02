@@ -7,6 +7,7 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/create/create.js';
 import '../../ui/pages/edit/edit.js';
 import '../../ui/pages/card/card.js';
+import '../../ui/pages/scores/scores.js';
 import '../../ui/pages/not-found/not-found.js';
 
 import '../../ui/components/loader/loader.js';
@@ -35,6 +36,13 @@ FlowRouter.route('/card/:cardId/:qId?', {
   name: 'App.card',
   action() {
     BlazeLayout.render('App_body', { main: 'App_card' });
+  },
+});
+
+FlowRouter.route('/scores/:cardId', {
+  name: 'App.scores',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_scores' });
   },
 });
 
