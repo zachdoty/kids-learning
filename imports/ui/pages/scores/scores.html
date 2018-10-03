@@ -1,12 +1,15 @@
 <template name="App_scores">
     {{ #if card }}
-    <ul class="collection with-header">
-        <li class="collection-header">
-            <h4>{{card.title}}</h4>
-        </li>
-        {{ #each question in card.questions }}
-        <li class="collection-item">{{ question.text }} <span class="right">{{score question._id}}</span></li>
-        {{ /each }}
-    </ul>
+        <ul class="list-group">
+            <li class="list-group-item bg-info">
+                <h4 class="text-white">{{card.title}}</h4>
+            </li>
+            {{ #each question in card.questions }}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ question.text }} 
+                <span class="badge badge-primary badge-pill">{{score question._id}}</span>
+            </li>
+            {{ /each }}
+        </ul>
     {{ /if }}
 </template>

@@ -33,4 +33,5 @@ session
 accounts-ui
 accounts-password
 alanning:roles
-materialize:materialize@=0.97.0
+alexwine:bootstrap-4
+natestrauser:font-awesome

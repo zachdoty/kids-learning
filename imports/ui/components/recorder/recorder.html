@@ -1,16 +1,16 @@
 <template name="App_recorder">
     <div class="recorder">
         {{ #if isRecording }}
-        <i id="btn-stop" class=" material-icons cursor-pointer">mic_off</i>
+        <i id="btn-stop" class="fa fa-microphone-slash cursor-pointer"></i>
         {{ else }}
-        <i id="btn-start" class=" material-icons cursor-pointer">mic</i>
+        <i id="btn-start" class="fa fa-microphone cursor-pointer"></i>
         {{ /if }}
 
         {{ #if url }}
         {{ #if isPlaying }}
-        <i id="btn-stop-play" class=" material-icons cursor-pointer">stop</i>
+        <i id="btn-stop-play" class="fa fa-stop cursor-pointer"></i>
         {{ else }}
-        <i id="btn-play" class=" material-icons cursor-pointer">play_circle_filled</i>
+        <i id="btn-play" class="fa fa-play cursor-pointer"></i>
         {{ /if }}
 
         <audio hidden="true" id="{{name}}" >

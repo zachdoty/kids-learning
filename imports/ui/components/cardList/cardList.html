@@ -2,44 +2,63 @@
 
     {{ #if isLoading }}
     <div class="row">
-        <div class="col s12 m12 l12 center-align">
+        <div class="col-sm-12 col-md-12 col-lg-12 center-align">
             {{> App_loader}}
         </div>
     </div>
     {{ else }}
+
+    {{#if isInRole 'admin'}}
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <a href="/create" class="float-right btn btn-outline-success">
+                Add New Question
+            </a>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    {{/if}}
+
     <div class="row">
 
         {{#each card in cards}}
-        <div class="col s12 m6 l4">
+        <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">
-                <div class="card-content">
+                <div class="card-body">
                     <div class="row">
-                        <div class="col s10 m10 l10">
-                            <p class="truncate">{{card.title}}</p>
+                        <div class="col-sm-10 col-md-10 col-lg-10">
+                            <h5 class="card-title">{{card.title}}</h5>
                         </div>
-                        <div class="col s2 m2 l2">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             {{> App_player name=card._id audio=card.audio}}
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <p class="card-subtitle mb-2 text-muted">{{length card.questions}} Questions</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-action">
-                    {{length card.questions}} questions
-                    {{#if isInRole 'admin'}}
-                    <span class="right">{{> App_cardAction cardId=card._id}}</span>
-                    {{ /if }}
-                    <a class="right no-margin" href="/card/{{card._id}}">
-                        <i class="material-icons">play_circle_outline</i>
-                    </a>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            <a href="/card/{{card._id}}" class="text-success btn-play">
+                                <i class="fa fa-play-circle-o"></i>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            {{#if isInRole 'admin'}}
+                            <span class="right">{{> App_cardAction cardId=card._id}}</span>
+                            {{ /if }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         {{/each}}
 
     </div>
-
-    <a href="/create" class="fixed-action-btn btn-floating btn-large waves-effect waves-light red">
-        <i class="material-icons">add</i>
-    </a>
     {{ /if }}
 
 </template>

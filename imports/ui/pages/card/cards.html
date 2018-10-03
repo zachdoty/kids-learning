@@ -2,49 +2,53 @@
     <div class="quiz-card">
         {{ #if isLoading }}
         <div class="row">
-            <div class="col s12 m12 l12 center-align">
+            <div class="col-sm-12 col-md-12 col-lg-12 center-align">
                 {{> App_loader}}
             </div>
         </div>
         {{ else }}
         <div class="row">
-            <div class="col s12 m12">
+            <div class="col-sm-12 col-md-12">
                 <div class="card">
-                    <div class="card-content">
+                    <div class="card-body">
                         {{ #if card }}
                         <div class="card-title">
-                            {{card.title}}
-                            <div class="right">{{> App_player name=card._id audio=card.audio}}</div>
+                            <h5 class="float-left">{{card.title}}</h5>
+                            <div class="float-right">{{> App_player name=card._id audio=card.audio}}</div>
+                            <div class="clearfix"></div>
                         </div>
                         {{ /if }}
                         <br>
                         {{ #if question }}
-                        <ul class="collection with-header">
-                            <li class="collection-header teal lighten-2">
+                        <ul class="list-group">
+                            <li class="list-group-item">
                                 <h4 class="white-text">{{question.text}}
-                                    <div class="right">{{> App_player autoplay=true name=question._id
+                                    <div class="float-right">{{> App_player autoplay=true name=question._id
                                         audio=question.audio}}</div>
                                 </h4>
                             </li>
                             {{ #each option in (shuffle question.options)}}
-                            <li class="collection-item">
+                            <li class="list-group-item">
                                 <label>
                                     <input name="options" type="radio" value="{{option._id}}" />
                                     <span>{{option.text}}</span>
                                 </label>
-                                <div class="right">{{> App_player name=option._id audio=option.audio}}</div>
+                                <div class="float-right">{{> App_player name=option._id audio=option.audio}}</div>
                             </li>
                             {{ /each }}
                         </ul>
                         {{ /if }}
                     </div>
-                    <div class="card-action">
+                    <div class="card-footer">
                         {{ #if card }}
                         <span class="left grey-text lighten-4">{{qIndex}} of {{questionsCount}} Questions</span>
                         {{ /if }}
-                        <a href="#open-modal" id="btn-check" class="btn-floating right waves-effect waves-light red"><i
+                        <!-- <a href="#open-modal" id="btn-check" class="btn-floating right waves-effect waves-light red"><i
                             id="btn-check-icon" class="material-icons">check</i>
-                        </a>
+                        </a> -->
+                        <button data-toggle="modal" data-target="#resultModal" id="btn-check" type="button" class="btn btn-primary float-right">
+                            <i class="fa fa-check"></i> Submit
+                        </button>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -53,14 +57,21 @@
         {{ /if }}
     </div>
 
-    <div id="open-modal" class="modal-window">
-        <div>
-            <a href="#" title="Next" class="modal-close">Next</a>
-            <h1>Result</h1>
-            <div>
-                {{message}}
+    <div class="modal fade" id="resultModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                </div>
+                <div class="modal-body">
+                    {{message}}
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-next" type="button" data-dismiss="modal" class="btn btn-success">Next</button>
+                </div>
             </div>
         </div>
     </div>
+
 
 </template>

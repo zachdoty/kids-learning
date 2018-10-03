@@ -1,11 +1,11 @@
 <template name="App_body">
   {{> App_navbar}}
 
-  <div class="container">
+  <main role="main" class=" container">
     {{ #if currentUser }}
     {{> Template.dynamic template=main}}
     {{ else }}
     <h5>Please login.</h5>
     {{ /if }}
-  </div>
+  </main>
 </template>

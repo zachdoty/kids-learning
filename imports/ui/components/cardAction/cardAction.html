@@ -1,16 +1,15 @@
 <template name="App_cardAction">
-    <ul id='dropdown-{{cardId}}' class='dropdown-content'>
-        <li><a href="/card-update/{{cardId}}">Update</a></li>
-        <li><a id="btn-delete">Delete</a></li>
-        <li><a href="/scores/{{cardId}}">My Scores</a></li>
-    </ul>
-
-    <a class="dropdown-trigger no-margin" href="#" data-target="dropdown-{{cardId}}">
-        <i class=" material-icons cursor-pointer">more_vert</i>
-    </a>
-
-    <script>
-        M.AutoInit();
-    </script>
+   
+    <div class="dropdown">
+        <button class="btn btn-link dropdown-toggle" type="button" id="dropdown-{{cardId}}" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Options
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdown-{{cardId}}">
+            <a class="dropdown-item" href="/card-update/{{cardId}}">Update</a>
+            <a class="dropdown-item" id="btn-delete">Delete</a>
+            <a class="dropdown-item" href="/scores/{{cardId}}">My Score</a>
+        </div>
+    </div>
 
 </template>

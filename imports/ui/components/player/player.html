@@ -2,9 +2,9 @@
     <div class="player">
         {{ #if url }}
             {{ #if isPlaying }}
-            <i id="btn-stop" class=" material-icons cursor-pointer">mic_off</i>
+            <i id="btn-stop" class="fa fa-microphone-slash cursor-pointer" area-hidden="true"></i>
             {{ else }}
-            <i id="btn-play" class=" material-icons cursor-pointer">mic</i>
+            <i id="btn-play" class="fa fa-microphone cursor-pointer" area-hidden="true"></i>
             {{ /if }}
             <audio hidden="true" id="{{name}}">
                 <source src="{{url}}" type="audio/wav">

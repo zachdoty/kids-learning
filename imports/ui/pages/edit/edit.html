@@ -2,7 +2,7 @@
     <div class="quiz-card">
         {{ #if isLoading }}
         <div class="row">
-            <div class="col s12 m12 l12 center-align">
+            <div class="col-sm-12 col-md-12 col-lg-12center-align">
                 {{> App_loader}}
             </div>
         </div>
@@ -10,13 +10,13 @@
             {{ #if card}}
             <form id="card-form">
                 <div class="row">
-                    <div class="col s12">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="row">
-                            <div class="input-field col s11 m10">
-                                <input value="{{card.title}}" id="title" type="text" class="validate">
+                            <div class="form-group col-sm-11 col-md-10">
                                 <label class="active" for="title">Title</label>
+                                <input value="{{card.title}}" id="title" type="text" class="validate form-control">
                             </div>
-                            <div class="col s1 m2">
+                            <div class="col-sm-1 col-md2">
                                 {{ > App_recorder name="title" }}
                             </div>
                         </div>
@@ -24,52 +24,52 @@
                 </div>
 
                 <div class="row">
-                    <div class="col s12 m12">
+                    <div class="col-sm-12 col-md-12">
                         <h5>Questions</h5>
                     </div>
 
                     {{#each question in questions}}
-                    <div class="col s12 m12" style="padding-left: 35px;">
+                    <div class="col-sm-12 col-md-12" style="padding-left: 35px;">
                         <div class="row">
-                            <div class="input-field col s11 m10">
-                                <input value="{{question.text}}" class="question-text validate" data-index="{{@index}}" id="question-text-{{@index}}"
-                                    type="text">
+                            <div class="form-group col-sm-11 col-md-10">
                                 <label class="active" for="question-text-{{@index}}">Text</label>
+                                <input value="{{question.text}}" class="question-text validate form-control" data-index="{{@index}}" id="question-text-{{@index}}"
+                                    type="text">
                             </div>
-                            <div class="col s1 m2">
+                            <div class="col-sm-1 col-md-2">
                                 {{ > App_recorder name="question" qIndex=@index }}
                             </div>
                         </div>
 
                         {{#let qIndex=@index}}
                         <div class="row">
-                            <div class="col s12 m12">
-                                <h5>Options <button data-index="{{qIndex}}" type="button" class="right add-option waves-effect waves-light btn">
-                                        New
+                            <div class="col-sm-12 col-md-12">
+                                <h5>Options <button data-index="{{qIndex}}" type="button" class="float-right btn btn-sm btn-success add-option">
+                                        New Option
                                     </button></h5>
                             </div>
 
                             {{#each option in question.options}}
-                            <div class="col s12" style="margin-left: 35px;">
+                            <div class="col-sm-12 col-md-12" style="margin-left: 35px;">
                                 <div class="row">
-                                    <div class="input-field col s11 m10">
-                                        <input value="{{option.text}}" class="option-text validate" data-qindex="{{qIndex}}" data-index="{{@index}}"
-                                            id="option-text-{{qIndex}}-{{@index}}" type="text">
+                                    <div class="form-group col-sm-11 col-md-10">
                                         <label class="active" for="option-text-{{qIndex}}-{{@index}}">Text</label>
+                                        <input value="{{option.text}}" class="option-text validate form-control" data-qindex="{{qIndex}}" data-index="{{@index}}"
+                                            id="option-text-{{qIndex}}-{{@index}}" type="text">
                                     </div>
-                                    <div class="col s1 m2">
+                                    <div class="col-sm-1 col-md-2">
                                         {{ > App_recorder name="option" qIndex=qIndex index=@index }}
                                     </div>
 
-                                    <div class="input-field col s12 m12">
-                                        <label>
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <div class="form-group form-check">
                                             {{ #if option.isCorrect}}
-                                            <input checked class="option-status" value="{{@index}}" name="options-{{qIndex}}" type="radio" />
-                                            {{ else  }}
-                                            <input class="option-status" value="{{@index}}" name="options-{{qIndex}}" type="radio" />
+                                            <input checked type="radio" class="form-check-input option-status" value="{{@index}}" name="options-{{qIndex}}" >
+                                            {{ else }}
+                                            <input type="radio" class="form-check-input option-status" value="{{@index}}" name="options-{{qIndex}}" >                                            
                                             {{ /if }}
-                                            <span>Is Correct Answer</span>
-                                        </label>
+                                            <label class="form-check-label" for="exampleCheck1">Is Correct Answer</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -81,8 +81,8 @@
                     {{/each}}
 
 
-                    <div class="col s12 m12">
-                        <button id="add-question" type="button" class="right waves-effect waves-light btn">
+                    <div class="col-sm-12 col-md-12">
+                        <button id="add-question" type="button" class="float-right btn btn-sm btn-success">
                             New Question
                         </button>
                     </div>
@@ -90,8 +90,8 @@
                 </div>
             </form>
 
-            <button type="button" id="btn-save-changes" class="fixed-action-btn btn-floating btn-large waves-effect waves-light red">
-                <i class="material-icons">check</i>
+            <button type="button" id="btn-save-changes" class="btn btn-primary">
+                <i class="fa fa-check"></i> Save Changes
             </button>
             {{ /if }}
         {{ /if }}

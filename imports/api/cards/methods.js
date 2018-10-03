@@ -66,9 +66,11 @@ Meteor.methods({
             throw new Meteor.Error('Unauthorized');
         }
     },
-    'cards.questionsID' (_cardId) {
+    async 'cards.questionsID'(_cardId) {
         if (Meteor.userId()) {
-            let card = Cards.findOne({_id: _cardId});
+            let card = Cards.findOne({
+                _id: _cardId
+            });
             let cardId = card._id;
             let userId = Meteor.userId();
             let questionsID = card.questions.map(q => q._id);
@@ -88,13 +90,11 @@ Meteor.methods({
 
                 answers = answers.map(a => a.answerObj);
 
-                recordar(answers, {})
-                    .then(_score => {
-                        scores.push({
-                            qId: questionsID[i],
-                            score: _score
-                        })
-                    });
+                let _score = await recordar(answers, {});
+                scores.push({
+                    qId: questionsID[i],
+                    score: _score
+                })
             };
             scores = scores.sort((a, b) => {
                 return a.score - b.score;
@@ -107,9 +107,11 @@ Meteor.methods({
         }
     },
 
-    'cards.scores' (_cardId) {
+    async 'cards.scores'(_cardId) {
         if (Meteor.userId()) {
-            let card = Cards.findOne({_id: _cardId});
+            let card = Cards.findOne({
+                _id: _cardId
+            });
             let cardId = card._id;
             let userId = Meteor.userId();
             let questionsID = card.questions.map(q => q._id);
@@ -129,13 +131,11 @@ Meteor.methods({
 
                 answers = answers.map(a => a.answerObj);
 
-                recordar(answers, {})
-                    .then(_score => {
-                        scores.push({
-                            qId: questionsID[i],
-                            score: _score
-                        })
-                    });
+                let _score = await recordar(answers, {});
+                scores.push({
+                    qId: questionsID[i],
+                    score: _score
+                })
             };
             scores = scores.sort((a, b) => {
                 return a.score - b.score;

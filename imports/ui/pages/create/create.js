@@ -7,7 +7,10 @@ import { Session } from 'meteor/session';
 Template.App_create.onCreated(function () {
     this.questions = new ReactiveVar([{
         text: "",
-        options: []
+        options: [{
+            text: "",
+            isCorrect: false
+        }]
     }]);
 });
 
@@ -22,7 +25,10 @@ Template.App_create.events({
         let questions = template.questions.get();
         questions.push({
             text: "",
-            options: []
+            options: [{
+                text: "",
+                isCorrect: false
+            }]
         });
         template.questions.set(questions);
     },
@@ -58,7 +64,10 @@ Template.App_create.events({
                 $('#card-form').trigger('reset');
                 template.questions.set([{
                     text: "",
-                    options: []
+                    options: [{
+                        text: "",
+                        isCorrect: false
+                    }]
                 }]);
             } else {
                 showAlertError('Error while saving card, please check details and try again.');

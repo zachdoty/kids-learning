@@ -78,11 +78,13 @@ Template.App_card.helpers({
 
 
 Template.App_card.events({
-    'click .modal-close'(event, template) {
+    'click #btn-next' (event, template) {
         template.isLoading.set(true);
         if (template.nexQuestionId.get()) {
             FlowRouter.go(`/card/${template.cardId.get()}/${template.nexQuestionId.get()}`);
         } else {
+            $('#resultModal').modal('dispose');
+            $('.modal-backdrop').css('display', 'none');
             FlowRouter.go('/');
         }
     },

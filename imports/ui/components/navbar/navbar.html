@@ -1,17 +1,19 @@
 <template name="App_navbar">
-    <nav>
-        <div class="container">
-            <div class="row">
-                <div class="nav-wrapper col s12 m12">
-                    <a href="/" class="brand-logo">Quiz</a>
-                    <ul id="nav-mobile" class="right">
-                        <li>
-                            {{> loginButtons}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    
+    <nav class="navbar navbar-expand-md navbar-dark bg-info">
+        <a class="navbar-brand" href="/">Kids Learning App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav">
+                {{> loginButtons}}
+            </ul>
         </div>
     </nav>
-    
+
 </template>
