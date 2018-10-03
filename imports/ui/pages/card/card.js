@@ -14,10 +14,12 @@ Template.App_card.onCreated(function () {
     this.question = new ReactiveVar(null);
     this.questionsID = null;
     this.questionsCount = new ReactiveVar(0);
+    this.questionsLoaded = new ReactiveVar(false);
 
     Meteor.call('cards.questionsID', FlowRouter.getParam("cardId"), (_err, _res) => {
         this.questionsID = _res;
         this.questionsCount.set(_res.length);
+        this.questionsLoaded.set(true);
     })
 
     this.autorun(() => {
@@ -30,24 +32,26 @@ Template.App_card.onCreated(function () {
         this.subscribe('cards.info', this.getCardId());
         if (this.subscriptionsReady()) {
             let card = Cards.findOne({});
-            if (this.questionsID && this.questionsID.includes(this.questionId)) {
-                this.question.set(card.questions.find(_q => {
-                    return _q._id == this.questionId;
-                }));
-                let currentQuestionIndex = this.questionsID.findIndex(_q => {
-                    return _q == this.questionId;
-                });
-                this.qIndex.set(currentQuestionIndex);
-                if ((currentQuestionIndex + 1) <= (this.questionsID.length - 1))
-                    this.nexQuestionId.set(this.questionsID[currentQuestionIndex + 1]);
-            } else {
-                this.question.set(card.questions.find(_q => {
-                    return _q._id == this.questionsID[0];
-                }));
-                if (1 <= (card.questions.length - 1))
-                    this.nexQuestionId.set(this.questionsID[1]);
+            if(this.questionsLoaded.get()) {
+                if (this.questionsID.includes(this.questionId)) {
+                    this.question.set(card.questions.find(_q => {
+                        return _q._id == this.questionId;
+                    }));
+                    let currentQuestionIndex = this.questionsID.findIndex(_q => {
+                        return _q == this.questionId;
+                    });
+                    this.qIndex.set(currentQuestionIndex);
+                    if ((currentQuestionIndex + 1) <= (this.questionsID.length - 1))
+                        this.nexQuestionId.set(this.questionsID[currentQuestionIndex + 1]);
+                } else {
+                    this.question.set(card.questions.find(_q => {
+                        return _q._id == this.questionsID[0];
+                    }));
+                    if (1 <= (card.questions.length - 1))
+                        this.nexQuestionId.set(this.questionsID[1]);
+                }
+                this.isLoading.set(false);
             }
-            this.isLoading.set(false);
         }
     });
 });
