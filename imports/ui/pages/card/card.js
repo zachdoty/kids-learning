@@ -30,7 +30,7 @@ Template.App_card.onCreated(function () {
         this.subscribe('cards.info', this.getCardId());
         if (this.subscriptionsReady()) {
             let card = Cards.findOne({});
-            if (this.questionsID.includes(this.questionId)) {
+            if (this.questionsID && this.questionsID.includes(this.questionId)) {
                 this.question.set(card.questions.find(_q => {
                     return _q._id == this.questionId;
                 }));

@@ -8,6 +8,7 @@ import '../../ui/pages/create/create.js';
 import '../../ui/pages/edit/edit.js';
 import '../../ui/pages/card/card.js';
 import '../../ui/pages/scores/scores.js';
+import '../../ui/pages/dashboard/dashboard.js';
 import '../../ui/pages/not-found/not-found.js';
 
 import '../../ui/components/loader/loader.js';
@@ -50,6 +51,13 @@ FlowRouter.route('/card-update/:cardId', {
   name: 'App.edit',
   action() {
     BlazeLayout.render('App_body', { main: 'App_edit_card' });
+  },
+});
+
+FlowRouter.route('/dashboard', {
+  name: 'App.dashboard',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_dashboard' });
   },
 });
 

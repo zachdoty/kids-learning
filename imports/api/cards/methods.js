@@ -146,4 +146,44 @@ Meteor.methods({
             throw new Meteor.Error('Unauthorized');
         }
     },
+
+    async 'card.user.scores'(_cardId, _userId) {
+        if ( Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            let card = Cards.findOne({
+                _id: _cardId
+            });
+            let cardId = card._id;
+            let userId = _userId;
+            let questionsID = card.questions.map(q => q._id);
+
+            let scores = [];
+
+            for (let i = 0; i < questionsID.length; i++) {
+                let answers = Answers.find({
+                    cardId: cardId,
+                    userId: userId,
+                    questionId: questionsID[i]
+                }, {
+                    fields: {
+                        answerObj: 1
+                    }
+                }).fetch();
+
+                answers = answers.map(a => a.answerObj);
+
+                let _score = await recordar(answers, {});
+                scores.push({
+                    qId: questionsID[i],
+                    score: _score
+                })
+            };
+            scores = scores.sort((a, b) => {
+                return a.score - b.score;
+            });
+
+            return scores;
+        } else {
+            throw new Meteor.Error('Unauthorized');
+        }
+    },
 });
