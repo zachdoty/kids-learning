@@ -95,7 +95,12 @@ Template.App_card.events({
     'click #btn-check, click #btn-check-icon'(event, template) {
         if (!template.isChecking.get()) {
             template.isChecking.set(true);
-            let answer = $(`input[type='radio'][name='options']:checked`).val();
+            let answer = null;
+            let activeQuestion = Template.instance().question.get();
+            if(activeQuestion.type == 'choices')
+                answer = $(`input[type='radio'][name='options']:checked`).val();
+            else
+                answer = $(`input[type='text'][name='question-answer']`).val();
             Meteor.call('card.answers.insert', template.cardId.get(), template.question.get()._id, answer, (_err, _res) => {
                 if (!_err) {
                     if (_res.correct) {

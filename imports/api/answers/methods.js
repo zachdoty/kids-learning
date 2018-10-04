@@ -15,7 +15,7 @@ Meteor.methods({
                 let question = card.questions.find(_el => {
                     return _el._id == _questionId;
                 });
-                if(question) {
+                if(question && question.type == 'choices') {
                     let correctOption = question.options.find(_el => {
                         return _el.isCorrect;
                     });
@@ -23,6 +23,10 @@ Meteor.methods({
                         result.correct = correctOption._id == _answerId;
                         result.text = correctOption.text;
                     }
+                }
+                if(question && question.type == 'fill') {
+                    result.correct = question.answer.toLowerCase() == _answerId.toLowerCase();
+                    result.text = question.answer;
                 }
                 let data = {
                     cardId: _cardId,
