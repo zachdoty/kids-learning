@@ -41,12 +41,16 @@ Template.App_dashboard.helpers({
     },
     score(_qId) {
         let scores = Template.instance().scores.get();
-        let res = scores.find(score => {
-            return score.qId == _qId;
-        })
-        if(res) {
-            return res.score;
-        } else
+        if(scores) {
+            let res = scores.find(score => {
+                return score.qId == _qId;
+            })
+            if(res) {
+                return res.score;
+            } else
+                return 0;
+        } else {
             return 0;
+        }
     },
 })

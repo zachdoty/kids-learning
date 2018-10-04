@@ -7,6 +7,7 @@ import { Session } from 'meteor/session';
 Template.App_create.onCreated(function () {
     this.questions = new ReactiveVar([{
         text: "",
+        type: "choices",
         options: [{
             text: "",
             isCorrect: false
@@ -25,6 +26,7 @@ Template.App_create.events({
         let questions = template.questions.get();
         questions.push({
             text: "",
+            type: "choices",
             options: [{
                 text: "",
                 isCorrect: false
@@ -64,6 +66,7 @@ Template.App_create.events({
                 $('#card-form').trigger('reset');
                 template.questions.set([{
                     text: "",
+                    type: "choices",
                     options: [{
                         text: "",
                         isCorrect: false
