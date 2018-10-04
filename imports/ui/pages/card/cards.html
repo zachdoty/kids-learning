@@ -34,7 +34,7 @@
                                 </li>
                             {{ else }}
                                 {{ #each option in (shuffle question.options)}}
-                                <li class="list-group-item">
+                                <li class="list-group-item option" id="option-{{option._id}}">
                                     <label>
                                         <input name="options" type="radio" value="{{option._id}}" />
                                         <span>{{option.text}}</span>

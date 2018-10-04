@@ -77,11 +77,16 @@ Template.App_card.helpers({
     },
     message() {
         return Template.instance().message.get();
-    }
+    },
 });
 
 
 Template.App_card.events({
+    'click .list-group-item.option' (event, template) {
+        $(`.list-group-item.option`).removeClass('active');
+        $(event.target).closest(`.list-group-item.option`).addClass('active');
+        $(event.target).find(`input[type='radio'][name='options']`).prop('checked', true);
+    },
     'click #btn-next' (event, template) {
         template.isLoading.set(true);
         if (template.nexQuestionId.get()) {
