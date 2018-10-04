@@ -27,15 +27,24 @@
                                         audio=question.audio}}</div>
                                 </h4>
                             </li>
-                            {{ #each option in (shuffle question.options)}}
-                            <li class="list-group-item">
-                                <label>
-                                    <input name="options" type="radio" value="{{option._id}}" />
-                                    <span>{{option.text}}</span>
-                                </label>
-                                <div class="float-right">{{> App_player name=option._id audio=option.audio}}</div>
-                            </li>
-                            {{ /each }}
+                            {{ #if equal question.type 'fill' }}
+                                <li class="list-group-item">
+                                    <code>
+                                        {{codeStr question.code}}
+                                    </code>
+                                    <!-- <input name="question-answer" class="form-control question-answer validate" type="text" /> -->
+                                </li>
+                            {{ else }}
+                                {{ #each option in (shuffle question.options)}}
+                                <li class="list-group-item option" id="option-{{option._id}}">
+                                    <label>
+                                        <input name="options" type="radio" value="{{option._id}}" />
+                                        <span>{{option.text}}</span>
+                                    </label>
+                                    <div class="float-right">{{> App_player name=option._id audio=option.audio}}</div>
+                                </li>
+                                {{ /each }}
+                            {{ /if }}
                         </ul>
                         {{ /if }}
                     </div>

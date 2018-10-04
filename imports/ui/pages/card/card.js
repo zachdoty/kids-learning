@@ -77,11 +77,19 @@ Template.App_card.helpers({
     },
     message() {
         return Template.instance().message.get();
+    },
+    codeStr(_code) {
+        let input = '<input name="question-answer" class="question-answer" type="text" />';
+        return Spacebars.SafeString(_code.replace("#_#", input));
     }
 });
 
-
 Template.App_card.events({
+    'click .list-group-item.option' (event, template) {
+        $(`.list-group-item.option`).removeClass('active');
+        $(event.target).closest(`.list-group-item.option`).addClass('active');
+        $(event.target).find(`input[type='radio'][name='options']`).prop('checked', true);
+    },
     'click #btn-next' (event, template) {
         template.isLoading.set(true);
         if (template.nexQuestionId.get()) {
@@ -95,7 +103,12 @@ Template.App_card.events({
     'click #btn-check, click #btn-check-icon'(event, template) {
         if (!template.isChecking.get()) {
             template.isChecking.set(true);
-            let answer = $(`input[type='radio'][name='options']:checked`).val();
+            let answer = null;
+            let activeQuestion = Template.instance().question.get();
+            if(activeQuestion.type == 'choices')
+                answer = $(`input[type='radio'][name='options']:checked`).val();
+            else
+                answer = $(`input[type='text'][name='question-answer']`).val();
             Meteor.call('card.answers.insert', template.cardId.get(), template.question.get()._id, answer, (_err, _res) => {
                 if (!_err) {
                     if (_res.correct) {

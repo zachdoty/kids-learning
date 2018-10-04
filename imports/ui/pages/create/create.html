@@ -33,10 +33,26 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="form-check form-check-inline">
+                            <input {{isChecked question.type 'choices'}} class="form-check-input q-type-selector" data-index="{{@index}}" type="radio" name="question-type-{{@index}}"
+                                value="choices">
+                            <label class="form-check-label">Choices</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input {{isChecked question.type 'fill'}}  class="form-check-input q-type-selector" data-index="{{@index}}" type="radio" name="question-type-{{@index}}"
+                                value="fill">
+                            <label class="form-check-label">Code Completion</label>
+                        </div>
+                    </div>
+                </div>
+
+                {{ #if equal question.type 'choices'}}
                 {{#let qIndex=@index}}
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
-                        <h5>Options 
+                        <h5>Options
                             <button data-index="{{qIndex}}" type="button" class="float-right btn btn-sm btn-success add-option">
                                 New Option
                             </button>
@@ -48,16 +64,16 @@
                         <div class="row">
                             <div class="form-group col-sm-11 col-md-10">
                                 <label for="option-text-{{qIndex}}-{{@index}}">Text</label>
-                                <input class="form-control option-text validate" data-qindex="{{qIndex}}" data-index="{{@index}}" id="option-text-{{qIndex}}-{{@index}}"
-                                    type="text">
+                                <input class="form-control option-text validate" data-qindex="{{qIndex}}" data-index="{{@index}}"
+                                    id="option-text-{{qIndex}}-{{@index}}" type="text">
                             </div>
                             <div class="col-sm-1 col-md-2">
                                 {{ > App_recorder name="option" qIndex=qIndex index=@index }}
-                             </div>
+                            </div>
 
                             <div class="form-group col-sm-12 col-md-12">
                                 <div class="form-group form-check">
-                                    <input type="radio" class="form-check-input option-status" value="{{@index}}" name="options-{{qIndex}}" >
+                                    <input type="radio" class="form-check-input option-status" value="{{@index}}" name="options-{{qIndex}}">
                                     <label class="form-check-label" for="exampleCheck1">Is Correct Answer</label>
                                 </div>
                             </div>
@@ -67,6 +83,20 @@
 
                 </div>
                 {{/let}}
+                {{ else }}
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-10">
+                        <label for="question-code-{{@index}}">Code</label>
+                        <textarea class="form-control question-code validate" data-index="{{@index}}" id="question-code-{{@index}}"></textarea>
+                        <small class="form-text text-muted">use <span class="text-danger">#_#</span> for the blank</small>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-10">
+                        <label for="question-answer-{{@index}}">Answer</label>
+                        <input class="form-control question-answer validate" data-index="{{@index}}" id="question-answer-{{@index}}"
+                                type="text">
+                    </div>
+                </div>
+                {{ /if }}
             </div>
             {{/each}}
 

@@ -49,6 +49,16 @@ schemas.Question = new SimpleSchema({
         type: String,
         label: "Text",
     },
+    code: {
+        type: String,
+        label: "Text",
+        optional: true,
+    },
+    answer: {
+        type: String,
+        label: "Answer",
+        optional: true,
+    },
     audio: {
         type: Object,
         label: "Text Audio",
