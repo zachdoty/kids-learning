@@ -29,8 +29,10 @@
                             </li>
                             {{ #if equal question.type 'fill' }}
                                 <li class="list-group-item">
-                                    <input name="question-answer" class="form-control question-answer validate" type="text" />
-                                    <div class="float-right">{{> App_player name=option._id audio=option.audio}}</div>
+                                    <code>
+                                        {{codeStr question.code}}
+                                    </code>
+                                    <!-- <input name="question-answer" class="form-control question-answer validate" type="text" /> -->
                                 </li>
                             {{ else }}
                                 {{ #each option in (shuffle question.options)}}

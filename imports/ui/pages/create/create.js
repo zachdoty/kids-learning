@@ -9,6 +9,7 @@ Template.App_create.onCreated(function () {
         text: "",
         type: "choices",
         answer: "",
+        code: "",
         options: [{
             text: "",
             isCorrect: false
@@ -29,6 +30,7 @@ Template.App_create.events({
             text: "",
             type: "choices",
             answer: "",
+            code: "",
             options: [{
                 text: "",
                 isCorrect: false
@@ -72,6 +74,7 @@ Template.App_create.events({
                     text: "",
                     type: "choices",
                     answer: "",
+                    code: "",
                     options: [{
                         text: "",
                         isCorrect: false
@@ -106,7 +109,7 @@ Template.App_create.events({
         let questions = template.questions.get();
         questions[qIndex].type = value;
         if(value == 'choices')
-            questions[qIndex].answer = '';
+        questions[qIndex].code = questions[qIndex].answer = '';
         else
             questions[qIndex].options = [];
         template.questions.set(questions);
@@ -117,6 +120,14 @@ Template.App_create.events({
         let value = event.target.value;
         let questions = template.questions.get();
         questions[qIndex].answer = value;
+        template.questions.set(questions);
+    },
+
+    'change .question-code'(event, template) {
+        let qIndex = $(event.target).data('index');
+        let value = event.target.value;
+        let questions = template.questions.get();
+        questions[qIndex].code = value;
         template.questions.set(questions);
     },
 });

@@ -78,8 +78,11 @@ Template.App_card.helpers({
     message() {
         return Template.instance().message.get();
     },
+    codeStr(_code) {
+        let input = '<input name="question-answer" class="question-answer" type="text" />';
+        return Spacebars.SafeString(_code.replace("#_#", input));
+    }
 });
-
 
 Template.App_card.events({
     'click .list-group-item.option' (event, template) {
